@@ -1,4 +1,4 @@
-# Printf
+# Custom Printf
 ## Synopsis
 This is a simple implementation of a custom printf function that formats and prints data
 
@@ -20,5 +20,5 @@ Convertion specifiers for the project: i
 
 ## Usage
 + All the files are to be compiled on Ubuntu 20.04 LTS
-+ Compile your code with `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c`
++ Compile code with `gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c`
 + Include the "main.h" header file on the functions using the _printf()
