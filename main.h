@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#define BUFSIZE 1024
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -34,6 +36,7 @@ int unsigned_integer(va_list);
 int print_octal(va_list list);
 int print_hex(va_list list);
 int print_heX(va_list list);
+int print_pointer(va_list list);
 
 /*Printf Helper functions*/
 unsigned int base_len(unsigned int, int);
