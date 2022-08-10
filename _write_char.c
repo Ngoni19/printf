@@ -9,6 +9,11 @@
  */
 int _write_char(char c)
 {
+	/* 
+	*uses a function from unistd that writes to stdout
+	*wite(regular file, const void *buf, number of chars to write)
+	*write returns the num of chars return to stdout which we need to keep track of
+	*/
 	return (write(1, &c, 1));
 }
 
