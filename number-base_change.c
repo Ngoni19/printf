@@ -183,7 +183,10 @@ int hex_check(int num, char x)
 {
 	char *hex = "abcdef";
 	char *Hex = "ABCDEF";
-
+	
+	/*
+	*uses an array to neatly pick the corresponding letter
+	*/
 	num = num - 10;
 	if (x == 'x')
 		return (hex[num]);

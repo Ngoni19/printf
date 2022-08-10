@@ -26,7 +26,11 @@ int print_number(va_list args)
 
 	for (; num / div > 9; )
 		div *= 10;
-
+	/*
+	* By exctracting the first number using / 
+	* and reducing the number to remaining digits
+	*the function writes a digit forwards in a char *
+	*/
 	for (; div != 0; )
 	{
 		len += _write_char('0' + num / div);
