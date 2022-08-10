@@ -9,38 +9,41 @@
 int _printf(const char *format, ...)
 {
 	int printed_chars;
+	char *buf;
+	
 	/*
 	*make an array of a convert structure
 	*allows us to call functions through pointers whenever
 	*there is a match to a char
 	*/
 	conver_t f_list[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"u", unsigned_integer},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_heX},
-		{"r", print_reversed},
-		{"R", rot13},
+		{"c", print_char}, /* done */
+		{"s", print_string}, /* done */
+		{"%", print_percent}, /* done */
+		{"d", print_integer}, /* done */
+		{"i", print_integer}, /* done */
+		{"b", print_binary}, /* done */
+		{"u", unsigned_integer}, /* done */
+		{"o", print_octal}, /* done */
+		{"x", print_hex}, /* done */
+		{"X", print_heX}, /* done */
+		{"r", print_reversed}, /* done */
+		{"R", rot13}, /* done */
 		{"p", print_pointer},
 		{NULL, NULL}
 	};
 	/* declare variable length variable*/
-	va_list arg_list;
-
-	if (format == NULL)
+	va_list arg_list;	
+	buf = malloc(BUFSIZE * sizeof(char));
+	if (format == NULL || buf == NULL)
 		return (-1);
 
 	/* initialize the variable */
 	va_start(arg_list, format);
 	/*Call parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
+	printed_chars = parser(format, f_list, arg_list, buf);
+	va_end(arg_list);	
+	write(1, buf, printed_chars);	
 	return (printed_chars);
 }
 

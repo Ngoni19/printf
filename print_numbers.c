@@ -1,11 +1,13 @@
 #include "main.h"
 
 /**
- * print_number - prints a number then send to this function
- * @args: List of arguments
- * Return: Number of arguments printed
- */
-int print_number(va_list args)
+* print_number - prints a number then send to this function
+* @args: List of arguments
+* @buf: buffer
+* @len_t: where to write in buffer
+* Return: Number of arguments printed
+*/
+int print_number(va_list args, char *buf, int len_t)
 {
 	int len;
 	int div;
@@ -18,7 +20,7 @@ int print_number(va_list args)
 
 	if (n < 0)
 	{
-		len += _write_char('-');
+		len += _write_char(buf, '-', len_t);
 		num = n * -1;
 	}
 	else
@@ -33,19 +35,22 @@ int print_number(va_list args)
 	*/
 	for (; div != 0; )
 	{
-		len += _write_char('0' + num / div);
+		len += _write_char(buf, ('0' + num / div), len_t);
 		num %= div;
 		div /= 10;
+		len_t ++;
 	}
 
 	return (len);
 }
 /**
- * print_unsgined_number - Prints an unsigned number
- * @n: unsigned integer to be printed
- * Return: The amount of numbers printed
- */
-int print_unsgined_number(unsigned int n)
+* print_unsgined_number - Prints an unsigned number
+* @n: unsigned integer to be printed
+* @buf: buffer
+* @len_t: where to write in buffer
+* Return: The amount of numbers printed
+*/
+int print_unsgined_number(unsigned int n, char *buf, int len_t)
 {
 	int div;
 	int len;
@@ -64,9 +69,10 @@ int print_unsgined_number(unsigned int n)
 
 	for (; div != 0; )
 	{
-		len += _write_char('0' + num / div);
+		len += _write_char(buf, '0' + num / div, len_t);
 		num %= div;
 		div /= 10;
+		len_t ++;
 	}
 
 	return (len);

@@ -34,15 +34,20 @@ char *rev_string(char *s)
 }
 
 /**
- * write_base - function sends characters to be written on standard output
- * @str: String to parse
- */
-void write_base(char *str)
+*write_base - function sends characters to be written on standard output
+*@str: String to parse
+*@buf: buffer
+*@len: where to write in buffer
+*/
+void write_base(char *str, char *buf, int len)
 {
 	int i;
 
 	for (i = 0; str[i] != '\0'; i++)
-		_write_char(str[i]);
+	{
+		_write_char(buf, str[i], len);
+		len ++;
+	}
 }
 
 /**

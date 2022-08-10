@@ -1,11 +1,13 @@
 #include "main.h"
 
 /**
- * print_reversed - Calls a function to reverse & print a string
- * @arg: Argument passed to the function
- * Return: The amount of characters printed
- */
-int print_reversed(va_list arg)
+* print_reversed - Calls a function to reverse & print a string
+* @arg: Argument passed to the function
+* @buf: buffer
+* @len_t: where to write in buffer
+* Return: The amount of characters printed
+*/
+int print_reversed(va_list arg, char *buf, int len_t)
 {
 	int len;
 	char *str;
@@ -18,17 +20,22 @@ int print_reversed(va_list arg)
 	if (ptr == NULL)
 		return (-1);
 	for (len = 0; ptr[len] != '\0'; len++)
-		_write_char(ptr[len]);
+	{
+		_write_char(buf, ptr[len], len_t);
+		len_t ++;
+	}
 	free(ptr);
 	return (len);
 }
 
 /**
- * rot13 - Converts string to rot13
- * @list: string to convert
- * Return: converted string
- */
-int rot13(va_list list)
+* rot13 - Converts string to rot13
+* @list: string to convert
+* @buf: buffer
+* @len_t: where to write in buffer
+* Return: converted string
+*/
+int rot13(va_list list, char *buf, int len_t)
 {
 	int i;
 	int x;
@@ -45,12 +52,16 @@ int rot13(va_list list)
 		{
 			if (str[i] == s[x])
 			{
-				_write_char(u[x]);
+				_write_char(buf, u[x], len_t);
+				len_t ++;
 				break;
 			}
 		}
 		if (x == 53)
-			_write_char(str[i]);
+		{
+			_write_char(buf, str[i], len_t);
+			len_t ++;
+		}
 	}
 	return (i);
 }
