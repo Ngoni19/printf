@@ -164,6 +164,7 @@ int print_heX(va_list list)
 		num = num / 16;
 	}
 	hex_rep[len] = '\0';
+	/* this method of base conversion requires reversing str */
 	rev_hex = rev_string(hex_rep);
 	if (rev_hex == NULL)
 		return (-1);
