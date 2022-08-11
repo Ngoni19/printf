@@ -30,6 +30,7 @@ int _printf(const char *format, ...)
 		{"r", print_reversed}, /* done */
 		{"R", rot13}, /* done */
 		{"p", print_pointer},
+		{"S", printf_exclusive_string},
 		{NULL, NULL}
 	};
 	/* declare variable length variable*/
