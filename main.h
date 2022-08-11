@@ -37,6 +37,7 @@ int print_octal(va_list list, char *, int);
 int print_hex(va_list list, char *, int);
 int print_heX(va_list list, char *, int);
 int print_pointer(va_list list, char *, int);
+int printf_exclusive_string(va_list val);
 
 /*Printf Helper functions*/
 unsigned int base_len(unsigned int, int);
