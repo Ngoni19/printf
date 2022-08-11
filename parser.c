@@ -6,9 +6,10 @@
  * @format: A string containing all the desired characters.
  * @f_list: A list of all the possible functions.
  * @arg_list: A list containing all the argumentents passed to the program.
+ *@buf: store
  * Return: A total count of the characters printed.
  */
-int parser(const char *format, conver_t f_list[], va_list arg_list)
+int parser(const char *format, conver_t f_list[], va_list arg_list, char *buf)
 {
 	int i, j, r_val, printed_chars;
 
@@ -22,7 +23,7 @@ int parser(const char *format, conver_t f_list[], va_list arg_list)
 			{
 				if (format[i + 1] == f_list[j].sym[0])
 				{
-					r_val = f_list[j].f(arg_list);
+					r_val = f_list[j].f(arg_list, buf, printed_chars);
 					if (r_val == -1)
 						return (-1);
 					printed_chars += r_val;
@@ -33,8 +34,8 @@ int parser(const char *format, conver_t f_list[], va_list arg_list)
 			{
 				if (format[i + 1] != '\0')
 				{
-					_write_char(format[i]);
-					_write_char(format[i + 1]);
+					_write_char(buf, format[i], printed_chars);
+					_write_char(buf, format[i + 1], printed_chars);
 					printed_chars = printed_chars + 2;
 				}
 				else
@@ -44,7 +45,7 @@ int parser(const char *format, conver_t f_list[], va_list arg_list)
 		}
 		else
 		{
-			_write_char(format[i]);
+			_write_char(buf, format[i], printed_chars);
 			printed_chars++;
 		}
 	}
