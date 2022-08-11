@@ -11,9 +11,6 @@ int _printf(const char *format, ...)
 	int printed_chars;
 	char *buf;
 	
-	buf = malloc(BUFSIZE * sizeof(char));
-	if (buf == NULL)
-		return (-1);
 	/*
 	*make an array of a convert structure
 	*allows us to call functions through pointers whenever
@@ -36,19 +33,17 @@ int _printf(const char *format, ...)
 		{NULL, NULL}
 	};
 	/* declare variable length variable*/
-	va_list arg_list;
-
-	if (format == NULL)
+	va_list arg_list;	
+	buf = malloc(BUFSIZE * sizeof(char));
+	if (format == NULL || buf == NULL)
 		return (-1);
 
 	/* initialize the variable */
 	va_start(arg_list, format);
 	/*Call parser function*/
 	printed_chars = parser(format, f_list, arg_list, buf);
-	va_end(arg_list);
-	
-	write(1, buf, printed_chars);
-	
+	va_end(arg_list);	
+	write(1, buf, printed_chars);	
 	return (printed_chars);
 }
 

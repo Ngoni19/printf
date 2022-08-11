@@ -95,7 +95,7 @@ int print_pointer(va_list list, char *buf, int len_t)
 {
 	
 	int len;
-	void *ptr;
+	__attribute__((unused)) void *ptr;
 	
 	ptr = va_arg(list, void *);
 	len = 1;
