@@ -58,7 +58,7 @@ int print_unsgined_number(unsigned int n)
 	/*
 	* similar to the print_number but
 	* only works for unsigned int
-	/
+	*/
 	for (; num / div > 9; )
 		div *= 10;
 

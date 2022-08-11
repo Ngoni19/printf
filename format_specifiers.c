@@ -71,3 +71,20 @@ int unsigned_integer(va_list list)
 	return (print_unsgined_number(num));
 }
 
+int print_pointer(va_list list)
+{
+	
+	int len;
+	void *ptr;
+	
+	ptr = va_arg(list, void *);
+	len = 1;
+	
+	_write_char('p');
+	return (len);
+	
+	/*
+	*this is a place holder function 
+	*will be updated for true fanctionality
+	*/	
+}

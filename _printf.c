@@ -27,6 +27,7 @@ int _printf(const char *format, ...)
 		{"X", print_heX},
 		{"r", print_reversed},
 		{"R", rot13},
+		{"p", print_pointer},
 		{NULL, NULL}
 	};
 	/* declare variable length variable*/
