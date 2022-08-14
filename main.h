@@ -23,7 +23,7 @@ typedef struct convert conver_t;
 /*The main functions*/
 int parser(const char *format, conver_t f_list[], va_list arg_list, char *buf);
 int _printf(const char *format, ...);
-int _write_char(char);
+int _write_char(char *, char, int);
 int print_char(va_list, char *, int);
 int print_string(va_list, char *, int);
 int print_percent(va_list, char *, int);
