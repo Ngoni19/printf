@@ -2,16 +2,16 @@
 #include <stdio.h>
 
 /**
- * rev_string - reverses a string
- * @s: string to reverse
+ * rev_string - reverses a string in place
  *
- *Description: copies s to another string in reverse
+ * @s: string to reverse
  * Return: A pointer to a character
  */
 char *rev_string(char *s)
 {
 	int len;
-	int start;
+	int head;
+	char tmp;
 	char *dest;
 
 	for (len = 0; s[len] != '\0'; len++)
@@ -19,35 +19,28 @@ char *rev_string(char *s)
 
 	dest = malloc(sizeof(char) * len + 1);
 	if (dest == NULL)
-			return (NULL);
+		return (NULL);
 
-	*(dest + len) = '\0';
-	start = 0;
-	len --;
-	while (len >= 0)
+	_memcpy(dest, s, len);
+	for (head = 0; head < len; head++, len--)
 	{
-		*(dest + start) = *(s + len);
-		start ++;
-		len --;
-	}       
+		tmp = dest[len - 1];
+		dest[len - 1] = dest[head];
+		dest[head] = tmp;
+	}
 	return (dest);
 }
 
 /**
-*write_base - function sends characters to be written on standard output
-*@str: String to parse
-*@buf: buffer
-*@len: where to write in buffer
-*/
-void write_base(char *str, char *buf, int len)
+ * write_base - sends characters to be written on standard output
+ * @str: String to parse
+ */
+void write_base(char *str)
 {
 	int i;
 
 	for (i = 0; str[i] != '\0'; i++)
-	{
-		_write_char(buf, str[i], len);
-		len ++;
-	}
+		_write_char(str[i]);
 }
 
 /**
@@ -65,5 +58,22 @@ unsigned int base_len(unsigned int num, int base)
 		num = num / base;
 	}
 	return (i);
+}
+
+/**
+ * _memcpy - copy memory area
+ * @dest: Destination for copying
+ * @src: Source to copy from
+ * @n: The number of bytes to copy
+ * Return: The _memcpy() function returns a pointer to dest.
+ */
+char *_memcpy(char *dest, char *src, unsigned int n)
+{
+	unsigned int i;
+
+	for (i = 0; i < n; i++)
+		dest[i] = src[i];
+	dest[i] = '\0';
+	return (dest);
 }
 

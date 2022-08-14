@@ -1,17 +1,15 @@
 #include "main.h"
 
 /**
-* print_number - prints a number then send to this function
-* @args: List of arguments
-* @buf: buffer
-* @len_t: where to write in buffer
-* Return: Number of arguments printed
-*/
-int print_number(va_list args, char *buf, int len_t)
+ * print_number - prints a number send to this function
+ * @args: List of arguments
+ * Return: The number of arguments printed
+ */
+int print_number(va_list args)
 {
-	int len;
-	int div;
 	int n;
+	int div;
+	int len;
 	unsigned int num;
 
 	n  = va_arg(args, int);
@@ -20,7 +18,7 @@ int print_number(va_list args, char *buf, int len_t)
 
 	if (n < 0)
 	{
-		len += _write_char(buf, '-', len_t);
+		len += _write_char('-');
 		num = n * -1;
 	}
 	else
@@ -28,29 +26,22 @@ int print_number(va_list args, char *buf, int len_t)
 
 	for (; num / div > 9; )
 		div *= 10;
-	/*
-	* By exctracting the first number using / 
-	* and reducing the number to remaining digits
-	*the function writes a digit forwards in a char *
-	*/
+
 	for (; div != 0; )
 	{
-		len += _write_char(buf, ('0' + num / div), len_t);
+		len += _write_char('0' + num / div);
 		num %= div;
 		div /= 10;
-		len_t ++;
 	}
 
 	return (len);
 }
 /**
-* print_unsgined_number - Prints an unsigned number
-* @n: unsigned integer to be printed
-* @buf: buffer
-* @len_t: where to write in buffer
-* Return: The amount of numbers printed
-*/
-int print_unsgined_number(unsigned int n, char *buf, int len_t)
+ * print_unsgined_number - Prints an unsigned number
+ * @n: unsigned integer to be printed
+ * Return: The amount of numbers printed
+ */
+int print_unsgined_number(unsigned int n)
 {
 	int div;
 	int len;
@@ -60,19 +51,15 @@ int print_unsgined_number(unsigned int n, char *buf, int len_t)
 	len = 0;
 
 	num = n;
-	/*
-	* similar to the print_number but
-	* only works for unsigned int
-	*/
+
 	for (; num / div > 9; )
 		div *= 10;
 
 	for (; div != 0; )
 	{
-		len += _write_char(buf, '0' + num / div, len_t);
+		len += _write_char('0' + num / div);
 		num %= div;
 		div /= 10;
-		len_t ++;
 	}
 
 	return (len);
