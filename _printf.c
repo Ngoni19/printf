@@ -1,50 +1,40 @@
 #include "main.h"
 
 /**
- * _printf - Function receives main string and all the necessary parameters to
+ * _printf - Receives the main string and all the necessary parameters to
  * print a formated string
- * @format: String contains all the desired characters
- * Return: Total count of the characters printed
+ * @format: A string containing all the desired characters
+ * Return: A total count of the characters printed
  */
 int _printf(const char *format, ...)
 {
 	int printed_chars;
-	char *buf;
-	
-	/*
-	*make an array of a convert structure
-	*allows us to call functions through pointers whenever
-	*there is a match to a char
-	*/
 	conver_t f_list[] = {
-		{"c", print_char}, /* done */
-		{"s", print_string}, /* done */
-		{"%", print_percent}, /* done */
-		{"d", print_integer}, /* done */
-		{"i", print_integer}, /* done */
-		{"b", print_binary}, /* done */
-		{"u", unsigned_integer}, /* done */
-		{"o", print_octal}, /* done */
-		{"x", print_hex}, /* done */
-		{"X", print_heX}, /* done */
-		{"r", print_reversed}, /* done */
-		{"R", rot13}, /* done */
-		{"p", print_pointer},
+		{"c", print_char},
+		{"s", print_string},
+		{"%", print_percent},
+		{"d", print_integer},
+		{"i", print_integer},
+		{"b", print_binary},
+		{"r", print_reversed},
+		{"R", rot13},
+		{"u", unsigned_integer},
+		{"o", print_octal},
+		{"x", print_hex},
+		{"X", print_heX},
+		{"p", printf_pointer},
 		{"S", printf_exclusive_string},
 		{NULL, NULL}
 	};
-	/* declare variable length variable*/
-	va_list arg_list;	
-	buf = malloc(BUFSIZE * sizeof(char));
-	if (format == NULL || buf == NULL)
+	va_list arg_list;
+
+	if (format == NULL)
 		return (-1);
 
-	/* initialize the variable */
 	va_start(arg_list, format);
-	/*Call parser function*/
-	printed_chars = parser(format, f_list, arg_list, buf);
-	va_end(arg_list);	
-	write(1, buf, printed_chars);	
+	/*Calling parser function*/
+	printed_chars = parser(format, f_list, arg_list);
+	va_end(arg_list);
 	return (printed_chars);
 }
 

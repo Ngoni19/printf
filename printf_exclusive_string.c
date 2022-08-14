@@ -1,7 +1,8 @@
 #include "main.h"
+
 /**
- * printf_exclusive_string - print exclusives string.
- * @list: argument.
+ * printf_exclusive_string - print exclusuives string.
+ * @:list argument.
  * Return: the length of the string.
  */
 
@@ -37,4 +38,3 @@ int printf_exclusive_string(va_list list)
 	}
 	return (len);
 }
-

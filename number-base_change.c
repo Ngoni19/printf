@@ -3,14 +3,11 @@
 int hex_check(int, char);
 
 /**
-* print_binary - Convert a number from base 10 to binary
-* @list: List of arguments passed to this function
-* @buf: buffer
-* @len_t: where to write in buffer
-*
-* Return: The length of the number printed
-*/
-int print_binary(va_list list, char *buf, int len_t)
+ * print_binary - Converts a number from base 10 to binary
+ * @list: List of arguments passed to this function
+ * Return: The length of the number printed
+ */
+int print_binary(va_list list)
 {
 	unsigned int num;
 	int i, len;
@@ -19,7 +16,7 @@ int print_binary(va_list list, char *buf, int len_t)
 
 	num = va_arg(list, unsigned int);
 	if (num == 0)
-		return (_write_char(buf, '0', len_t));
+		return (_write_char('0'));
 	if (num < 1)
 		return (-1);
 	len = base_len(num, 2);
@@ -39,21 +36,18 @@ int print_binary(va_list list, char *buf, int len_t)
 	rev_str = rev_string(str);
 	if (rev_str == NULL)
 		return (-1);
-	write_base(rev_str, buf, len_t);
+	write_base(rev_str);
 	free(str);
 	free(rev_str);
 	return (len);
 }
 
 /**
-* print_octal - Prints the numeric representation of a number in octal base
-* @list: List of all the arguments passed to the program
-* @buf: buffer
-* @len_t: where to write in buffer
-*
-* Return: Number of symbols printed to stdout
-*/
-int print_octal(va_list list, char *buf, int len_t)
+ * print_octal - Prints the numeric representation of a number in octal base
+ * @list: List of all the arguments passed to the program
+ * Return: Number of symbols printed to stdout
+ */
+int print_octal(va_list list)
 {
 	unsigned int num;
 	int len;
@@ -63,7 +57,7 @@ int print_octal(va_list list, char *buf, int len_t)
 	num = va_arg(list, unsigned int);
 
 	if (num == 0)
-		return (_write_char(buf, '0', len_t));
+		return (_write_char('0'));
 	if (num < 1)
 		return (-1);
 	len = base_len(num, 8);
@@ -82,21 +76,18 @@ int print_octal(va_list list, char *buf, int len_t)
 	if (rev_str == NULL)
 		return (-1);
 
-	write_base(rev_str, buf, len_t);
+	write_base(rev_str);
 	free(octal_rep);
 	free(rev_str);
 	return (len);
 }
 
 /**
-* print_hex - Prints a representation of a decimal number on base16 lowercase
-* @list: List of the arguments passed to the function
-* @buf: buffer
-* @len_t: where to write in buffer
-*
-* Return: Number of characters printed
-*/
-int print_hex(va_list list, char *buf, int len_t)
+ * print_hex - Prints a representation of a decimal number on base16 lowercase
+ * @list: List of the arguments passed to the function
+ * Return: Number of characters printed
+ */
+int print_hex(va_list list)
 {
 	unsigned int num;
 	int len;
@@ -107,7 +98,7 @@ int print_hex(va_list list, char *buf, int len_t)
 	num = va_arg(list, unsigned int);
 
 	if (num == 0)
-		return (_write_char(buf, '0', len_t));
+		return (_write_char('0'));
 	if (num < 1)
 		return (-1);
 	len = base_len(num, 16);
@@ -130,7 +121,7 @@ int print_hex(va_list list, char *buf, int len_t)
 	rev_hex = rev_string(hex_rep);
 	if (rev_hex == NULL)
 		return (-1);
-	write_base(rev_hex, buf, len_t);
+	write_base(rev_hex);
 	free(hex_rep);
 	free(rev_hex);
 	return (len);
@@ -138,14 +129,11 @@ int print_hex(va_list list, char *buf, int len_t)
 
 
 /**
-* print_heX - Prints a representation of a decimal number on base16 Uppercase
-* @list: List of the arguments passed to the function
-* @buf: buffer
-* @len_t: where to write in buffer
-*
-* Return: Number of characters printed
-*/
-int print_heX(va_list list, char *buf, int len_t)
+ * print_heX - Prints a representation of a decimal number on base16 Uppercase
+ * @list: List of the arguments passed to the function
+ * Return: Number of characters printed
+ */
+int print_heX(va_list list)
 {
 	unsigned int num;
 	int len;
@@ -156,7 +144,7 @@ int print_heX(va_list list, char *buf, int len_t)
 	num = va_arg(list, unsigned int);
 
 	if (num == 0)
-		return (_write_char(buf, '0', len_t));
+		return (_write_char('0'));
 	if (num < 1)
 		return (-1);
 	len = base_len(num, 16);
@@ -176,11 +164,10 @@ int print_heX(va_list list, char *buf, int len_t)
 		num = num / 16;
 	}
 	hex_rep[len] = '\0';
-	/* this method of base conversion requires reversing str */
 	rev_hex = rev_string(hex_rep);
 	if (rev_hex == NULL)
 		return (-1);
-	write_base(rev_hex, buf, len_t);
+	write_base(rev_hex);
 	free(hex_rep);
 	free(rev_hex);
 	return (len);
@@ -196,10 +183,7 @@ int hex_check(int num, char x)
 {
 	char *hex = "abcdef";
 	char *Hex = "ABCDEF";
-	
-	/*
-	*uses an array to neatly pick the corresponding letter
-	*/
+
 	num = num - 10;
 	if (x == 'x')
 		return (hex[num]);
