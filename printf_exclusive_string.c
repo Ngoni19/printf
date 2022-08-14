@@ -2,7 +2,7 @@
 
 /**
  * printf_exclusive_string - print exclusuives string.
- * @:list argument.
+ * @list: argument.
  * Return: the length of the string.
  */
 
