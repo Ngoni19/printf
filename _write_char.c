@@ -9,10 +9,9 @@
 * Return: On success 1.
 * On error, -1 is returned, and errno is set appropriately.
 */
-int _write_char(char *buf, char c, int len)
+int _write_char(char c)
 {
 
-	*(buf + len) = c;
-	return (1);
+	return (write(1, &c, 1);
 }
 
